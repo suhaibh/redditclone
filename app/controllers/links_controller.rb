@@ -13,12 +13,13 @@ class LinksController < ApplicationController
   # GET /links/1
   # GET /links/1.json
   def show
-    
+    # initialize user to link to profile
+    @user = @link.user.name
   end
 
   # GET /links/new
   def new
-    @link = current_user.links.build(link_params)
+    @link = current_user.links.build
   end
 
   # GET /links/1/edit

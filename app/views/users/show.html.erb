@@ -1,0 +1,12 @@
+<% if @user %>
+	<%= @user.name %>'s Posts
+	
+	<div class="posts">
+		<% @user.links.each do |link| %>
+			<div class="post"><%= link_to link.title, link.url %></div>
+		<% end %>
+	</div>
+
+<% else %>
+	<span style="color:red">User does not exist</span>
+<% end %>

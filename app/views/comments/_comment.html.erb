@@ -2,8 +2,8 @@
 	<div>
 		<div>
 			<p class="comment"><%= comment.body %></p>
-			Submitted <strong><%= time_ago_in_words(comment.created_at) %> ago</strong> by <%= comment.user.email %>
-			<% if comment.user == current_user -%>
+			Submitted <strong><%= time_ago_in_words(comment.created_at) %> ago</strong> by <%= comment.user.name %>
+			<% if comment.user == current_user %>
 				| <%= link_to 'Destroy', [@link, comment], method: :delete, data: { confirm: "Are you sure?"} %>
 			<% end %>
 		</div>
