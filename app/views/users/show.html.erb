@@ -3,8 +3,11 @@
 	
 	<div class="posts">
 		<% @user.links.each do |link| %>
-			<div class="post"><%= link_to link.title, link.url %></div>
+			<div class="post"><%= link_to link.title, "http://#{link.url}" %></div>
 		<% end %>
+	</div>
+	<div class="userinfo">
+		Link Score <%= @user.score %>
 	</div>
 
 <% else %>

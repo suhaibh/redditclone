@@ -10,6 +10,15 @@ class User < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: true
 
+ def score
+  	total = 0
+  	links.each do |link|
+  		total += link.link_score
+  	end
+  	total
+ end
+
+
   private
   	def downcase_name
   		self.name.downcase!
