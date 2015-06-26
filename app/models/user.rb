@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: true
 
+ # total link score for a given user
  def score
   	total = 0
   	links.each do |link|
