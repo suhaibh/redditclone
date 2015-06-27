@@ -51,7 +51,7 @@ a {
 	padding-left: 50px;
 }
 
-.link {
+.index_link {
 	text-align: center;
 	padding: 10px;
 }
@@ -78,4 +78,33 @@ a {
 	&:nth-of-type(odd) {
 	background: #e6f3f7;
 	};
+}
+
+.comments_title{
+	border-bottom-style: solid;
+	border-bottom-width: thin;
+	border-bottom-color: #d3d3d3;
+}
+
+.comment {
+	width: 20%;
+	border-style: solid;
+	border-color: #d3d3d3;
+	border-width: thin;
+	border-radius: 25px;
+	padding-left: 10px;
+	margin-bottom: 10px;
+}
+
+.comment_body {
+	padding-top: 10px;
+	padding-left: 10px;
+	width: 75%;
+	border-bottom-style: solid;
+	border-bottom-width: thin;
+	border-bottom-color: #d3d3d3;
+}
+
+.comment_info {
+	padding-bottom: 10px;
 }

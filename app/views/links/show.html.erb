@@ -17,12 +17,12 @@
 	<%= link_to 'Delete', @link, method: :delete,
 								data: { confirm: "You sure?"} %>
 <% end %>
-<h3 class="comments_title">
+<h5 class="comments_title">
 	<%= pluralize @link.comments.count, "Comment" %>
-</h3>
+</h5>
 
 <div id="comments">
-	<%= render partial: @link.comments %>
+	<%= render "comments/comment" %>
 </div>
 
 <%= simple_form_for [@link, Comment.new] do |f| %>
