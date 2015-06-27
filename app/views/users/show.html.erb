@@ -1,20 +1,23 @@
 <% if @user %>
 	<%= @user.name %>'s Posts
 	
-	<div class="posts">
-		<% @user.links.each do |link| %>
-			<div class="post"><%= link_to link.title, "http://#{link.url}", class: "link_title" %></br>
-				<% if @user == current_user %>
-					<%= link_to 'Edit Link', edit_link_path(link) %> |
-					<%= link_to 'Delete', link, method: :delete, data: { confirm: "You sure?" } %>
-				<% end %>
-			</div>
-		<% end %>
-	</div>
-	<div class="userinfo">
-		Link Score: <%= @user.score %></br>
-		Account Age: <%= time_ago_in_words(@user.created_at) %>
-	</div>
+		<div class="userinfo">
+			Link Score: <%= @user.score %></br>
+			Account Age: <%= time_ago_in_words(@user.created_at) %>
+		</div>
+	</br>
+		<div class="posts">
+			<% @user.links.each do |link| %>
+				</br><div class="post"><%= link_to link.title, "http://#{link.url}", class: "link_title" %></br>
+					 <%= link_to "Comments (#{link.comments.size})", link %>
+					<% if @user == current_user %>
+						| <%= link_to 'Edit Link', edit_link_path(link) %> |
+						<%= link_to 'Delete', link, method: :delete, data: { confirm: "You sure?" } %>
+					<% end %>
+				</div>
+			<% end %>
+		</div>
+	
 
 <% else %>
 	<span style="color:red">User does not exist</span>

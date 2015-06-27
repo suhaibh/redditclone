@@ -51,14 +51,19 @@ a {
 	padding-left: 50px;
 }
 
-.link_title {
+.link {
 	text-align: center;
+	padding: 10px;
 }
 
+.link_title {
+	
+}
+
+
 .userinfo {
-	position: fixed;
-	top: 25%;
-	right: 5%;
+	position: relative;
+	float: right;
 	background: #fffbd6;
 	width: 15%;
 	text-align: center;
@@ -67,5 +72,10 @@ a {
 }
 
 .post {
+	width: 75%;
 	padding-top: 5px;
+	float: left;
+	&:nth-of-type(odd) {
+	background: #e6f3f7;
+	};
 }
