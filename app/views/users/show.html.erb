@@ -1,9 +1,13 @@
 <% if @user %>
-	<%= @user.name %>'s Posts
+	<%= @user.name %>'s Posts 
+		<% if @user == current_user %>
+			| <%= link_to "Edit account", edit_user_registration_path, style: 'color:red' %>
+		<% end %>
 	
 		<div class="userinfo">
 			Link Score: <%= @user.score %></br>
-			Account Age: <%= time_ago_in_words(@user.created_at) %>
+			Account Age: <%= time_ago_in_words(@user.created_at) %></br>
+			
 		</div>
 	</br>
 		<div class="posts">
