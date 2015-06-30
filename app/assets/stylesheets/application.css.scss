@@ -14,6 +14,8 @@
  *= require_scaffolds
  *= require_self
  */
+
+/* HEADER STYLING */
 .header {
 	padding-right: 10px;
 }
@@ -31,6 +33,7 @@ nav li {
 	float: right;
 }
 
+/* INDEX STYLING */
 a {
 	color: black;
 	text-decoration: none;
@@ -53,12 +56,9 @@ a {
 }
 
 .submit_link {
-	
-	a {
-	color: #ffffff;
-	}
-
-	color: #ffffff;
+	position: absolute;
+	bottom: 20%;
+	left: 5%;
 	background: #23add4;
 	border-width: thin;
 	border-style: solid;
@@ -68,16 +68,20 @@ a {
 	box-shadow: -3px 3px 8px #7e7e7e;
 }
 
-a.submit_link:hover {
+a.submit_link{
+	color: white;
+
+	&:hover {
 	color: #ffffff;
 	background: #11d6ea;
+	}
 }
 
 .link_title {
 	
 }
 
-
+/* User Profile Styling */
 .userinfo {
 	position: relative;
 	float: right;
@@ -97,6 +101,7 @@ a.submit_link:hover {
 	};
 }
 
+/* COMMENT STYLING */
 .comments_title{
 	border-bottom-style: solid;
 	border-bottom-width: thin;
@@ -124,4 +129,29 @@ a.submit_link:hover {
 
 .comment_info {
 	padding-bottom: 10px;
+}
+
+/* FORM STYLING */
+
+.field {
+	padding-bottom: 10px;
+}
+
+.new_link_button {
+	background-color: #23add4;
+	color: white;
+	border-radius: 25px;
+	border-color: white;
+	border-style: thin;
+	box-shadow: -3px 3px 8px #7e7e7e;
+	padding: 5px;
+	margin-left: 8px;
+	width: 150px;
+	&:hover {
+		background-color: #11d6ea;
+	}
+}
+
+.new_links_page {
+	padding-left: 20px;
 }
