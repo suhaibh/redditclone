@@ -1,7 +1,7 @@
 <% if @user %>
 	<%= @user.name %>'s Posts 
 		<% if @user == current_user %>
-			| <%= link_to "Edit account", edit_user_registration_path, style: 'color:red' %>
+			| <%= link_to "Edit account", edit_user_registration_path, id: "edit_account" %>
 		<% end %>
 	
 		<div class="userinfo">
@@ -24,5 +24,5 @@
 	
 
 <% else %>
-	<span style="color:red">User does not exist</span>
+	<span id="no_user">User does not exist</span>
 <% end %>

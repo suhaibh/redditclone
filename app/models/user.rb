@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :links
+  has_many :comments
 
   validates :name, presence: true, uniqueness: true
 
@@ -17,6 +18,14 @@ class User < ActiveRecord::Base
   		total += link.link_score
   	end
   	total
+ end
+
+ def email_required?
+    false
+ end
+
+ def email_changed?
+    false
  end
 
 

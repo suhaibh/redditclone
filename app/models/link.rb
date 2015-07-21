@@ -1,12 +1,12 @@
 class Link < ActiveRecord::Base
-	validates :title, 		presence: true
-	validates :url, 		presence: true
-	validates :description, presence: true
-
 	belongs_to :user
 	has_many :comments
 	acts_as_votable
 
+	validates :title, 		presence: true, length: { maximum: 200 }
+	validates :url, 		presence: true
+	validates :description, presence: true, length: { maximum: 1000 }
+	
 	def link_score
 		get_upvotes.size - get_downvotes.size
 	end

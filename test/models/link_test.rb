@@ -24,4 +24,14 @@ class LinkTest < ActiveSupport::TestCase
   	assert @link.invalid?
   end
 
+  test "link with long title should be invalid" do
+  	@link.title = "a" * 201
+  	assert @link.invalid?
+  end
+
+  test "link with long description should be invalid" do
+  	@link.description = "a" * 10001
+  	assert @link.invalid?
+  end
+
 end
