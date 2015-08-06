@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-
+<p> Subreddit: <%= link_to Subreddit, subreddit_path(@link.subreddit_id) %> </p>
 <p>
   <strong>Title:</strong>
   <%= @link.title %>
@@ -13,8 +13,8 @@
 	<%= link_to @link.user.name, user_path(@user) %>
 </p>
 <% if @link.user == current_user %>
-	<%= link_to 'Edit', edit_link_path(@link) %> | 
-	<%= link_to 'Delete', @link, method: :delete,
+	<%= link_to 'Edit', edit_subreddit_link_path(@subreddit, @link) %> | 
+	<%= link_to 'Delete', [@subreddit, @link], method: :delete,
 								data: { confirm: "You sure?"} %>
 <% end %>
 <h5 class="comments_title">
@@ -25,9 +25,9 @@
 	<%= render "comments/comment" %>
 </div>
 
-<%= simple_form_for [@link, Comment.new] do |f| %>
+<%= simple_form_for [@subreddit, @link, @comment] do |f| %>
 	<%= f.text_area :body %>
 	<%= f.submit "Add Comment" %>
 <% end %>
 
-<%= link_to 'Back', links_path %>
+<%= link_to 'Back', subreddit_links_path %>

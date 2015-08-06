@@ -1,0 +1,17 @@
+<h1>Create Subreddit</h1>
+
+<%= simple_form_for @subreddit do |f| %>
+	
+	<div class="field"> 
+		<%= f.input :title %>
+	</div>
+	
+	<div class="field">
+		<%= f.input :description %>
+	</div>
+	
+	<div class="field">
+		<%= f.button :submit %>
+	</div>
+<% end %>
+

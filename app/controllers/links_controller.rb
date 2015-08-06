@@ -1,6 +1,7 @@
 class LinksController < ApplicationController
   before_action :set_link,            only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!,  except: [:index, :show]
+  before_action :set_subreddit,       only: [:new, :create, :show]
   before_action :correct_user,        only: [:edit, :update, :destroy]
   
 
@@ -15,11 +16,13 @@ class LinksController < ApplicationController
   def show
     # initialize user to link to profile
     @user = @link.user.name
+    @comment = Comment.new
   end
 
   # GET /links/new
   def new
     @link = current_user.links.build
+    @link.subreddit_id = @subreddit.id
   end
 
   # GET /links/1/edit
@@ -30,10 +33,11 @@ class LinksController < ApplicationController
   # POST /links.json
   def create
     @link = current_user.links.build(link_params)
+    @link.subreddit_id = @subreddit.id
 
     respond_to do |format|
       if @link.save
-        format.html { redirect_to @link, notice: 'Link was successfully created.' }
+        format.html { redirect_to subreddit_link_path(@subreddit, @link), notice: 'Link was successfully created.' }
         format.json { render :show, status: :created, location: @link }
       else
         format.html { render :new }
@@ -82,6 +86,10 @@ class LinksController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_link
       @link = Link.find(params[:id])
+    end
+
+    def set_subreddit
+      @subreddit = Subreddit.find(params[:subreddit_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

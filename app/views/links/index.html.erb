@@ -18,16 +18,15 @@
         <tr>
           <td><%= link.link_score %></td>
           <td class="votes">
-            <%= link_to image_tag("upvote.png", size: "16x10"), like_link_path(link), class: "upvote", method: :put %><br>
-            <%= link_to image_tag("eqLD2.png", size: "16x10"), dislike_link_path(link), class: "downvote", method: :put %>
+            <%= link_to image_tag("upvote.png", size: "16x10"), like_subreddit_link_path(link.subreddit_id, link), class: "upvote", method: :put %><br>
+            <%= link_to image_tag("eqLD2.png", size: "16x10"), dislike_subreddit_link_path(link.subreddit_id, link), class: "downvote", method: :put %>
           </td>
           <td class="index_link">
             <%= link_to link.title, "http://#{link.url}", class: "link_title" %></br>
-            <%= link_to "Comments (#{link.comments.size})", link %> 
+            <%= link_to "Comments (#{link.comments.size})", subreddit_link_path(link.subreddit_id, link) %> 
           </td>
-          <% if link.user == current_user %>
-            <td><%= link_to 'Edit', edit_link_path(link) %> | </td>
-            <td><%= link_to 'Destroy', link, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% if link.user == current_user  %>
+            <td><%= link_to 'Edit', edit_subreddit_link_path(link.subreddit_id, link) %> | </td>
           <% end %>
         </tr>
       <% end %>
@@ -36,5 +35,4 @@
 
   <br>
 
-  <%= link_to 'New Link', new_link_path, class: 'submit_link' %>
 </div>

@@ -1,14 +1,17 @@
 Rails.application.routes.draw do
+
   devise_for :users, path: '', path_names: {sign_in: 'login', sign_out: 'logout'}
   
   root 'links#index'
 
-  resources :links do
-    member do
-      put "like", to: "links#upvote"
-      put "dislike", to: "links#downvote"
+  resources :subreddits do
+    resources :links do
+      member do
+        put "like", to: "links#upvote"
+        put "dislike", to: "links#downvote"
+      end
+      resources :comments
     end
-    resources :comments
   end
  
   resources :users, only: [:show], param: :name
