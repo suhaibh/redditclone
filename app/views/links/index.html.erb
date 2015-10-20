@@ -23,7 +23,7 @@
           </td>
           <td class="index_link">
             <%= link_to link.title, "http://#{link.url}", class: "link_title" %></br>
-            <%= link_to "Comments (#{link.comments.size})", subreddit_link_path(link.subreddit_id, link) %> 
+            <%= link_to "Comments (#{link.comments.size})", subreddit_link_path(link.subreddit_id, link) %> | <%= link_to link.subreddit.title, subreddit_path(link.subreddit) %>
           </td>
           <% if link.user == current_user  %>
             <td><%= link_to 'Edit', edit_subreddit_link_path(link.subreddit_id, link) %> | </td>
@@ -32,7 +32,6 @@
       <% end %>
     </tbody>
   </table>
-
   <br>
-
+<%= link_to "New Subreddit", new_subreddit_path, class: "submit_link" %>
 </div>

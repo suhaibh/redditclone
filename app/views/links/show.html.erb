@@ -1,4 +1,10 @@
 <p id="notice"><%= notice %></p>
+<% if flash[:error] %>
+	
+	<%# add css styling to error id %>
+	<p id="error"><%= flash[:error] %><p>
+
+<% end %>
 <p> Subreddit: <%= link_to Subreddit, subreddit_path(@link.subreddit_id) %> </p>
 <p>
   <strong>Title:</strong>
@@ -31,3 +37,6 @@
 <% end %>
 
 <%= link_to 'Back', subreddit_links_path %>
+
+<%= @link.inspect %> </br>
+<%= params[:id] %>

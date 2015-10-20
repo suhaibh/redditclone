@@ -8,14 +8,15 @@ class CommentsController < ApplicationController
     @link = Link.find(params[:link_id])
     @comment = @link.comments.build(comment_params)
     @comment.user = current_user
+    @subreddit = Subreddit.find(params[:subreddit_id])
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to @link, notice: 'Comment was successfully created.' }
+        format.html { redirect_to [@subreddit, @link], notice: 'Comment was successfully created.' }
         format.json { render :show, status: :created, location: @comment }
       else
-        format.html { render :new }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
+        format.html { redirect_to(subreddit_link_path(@subreddit, @link), {flash: {error: "Comment failed to post"}}) }
+        #format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
   end
