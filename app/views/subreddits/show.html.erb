@@ -1,6 +1,6 @@
-<h1>Subreddits#show</h1>
+<h1><%= @subreddit.title %></h1>
 <%= link_to 'New Link', new_subreddit_link_path(@subreddit), class: 'submit_link' %>
 
 <% @subreddit.links.each do | link | %>
-	<p class="link"><%= link.title %></p>
+	<p class="link"><%= link_to(link.title, subreddit_link_path(@subreddit, link)) %></p>
 <% end %>
