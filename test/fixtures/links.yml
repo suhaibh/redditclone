@@ -3,7 +3,9 @@
 one:
   title: MyString
   url: MyString
+  subreddit: one
 
 two:
   title: MyString
   url: MyString
+  subreddit: one
