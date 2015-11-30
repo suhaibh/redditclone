@@ -1,4 +1,5 @@
 class SubredditsController < ApplicationController
+
   def new
     @subreddit = Subreddit.new
   end
@@ -18,6 +19,7 @@ class SubredditsController < ApplicationController
   end
 
   def edit
+    @subreddit = Subreddit.find(params[:id])
   end
 
   def update
