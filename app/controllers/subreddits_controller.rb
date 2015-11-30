@@ -1,5 +1,7 @@
 class SubredditsController < ApplicationController
 
+  before_action :authenticate_user!, except: [:show]
+
   def new
     @subreddit = Subreddit.new
   end
