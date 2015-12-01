@@ -1,7 +1,7 @@
 class LinksController < ApplicationController
   before_action :set_link,            only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!,  except: [:index, :show]
-  before_action :set_subreddit,       only: [:new, :create, :show]
+  before_action :set_subreddit,       only: [:new, :create, :show, :edit, :update]
   before_action :correct_user,        only: [:edit, :update, :destroy]
   
 
@@ -51,7 +51,7 @@ class LinksController < ApplicationController
   def update
     respond_to do |format|
       if @link.update(link_params)
-        format.html { redirect_to @link, notice: 'Link was successfully updated.' }
+        format.html { redirect_to subreddit_link_path(@subreddit, @link), notice: 'Link was successfully updated.' }
         format.json { render :show, status: :ok, location: @link }
       else
         format.html { render :edit }
