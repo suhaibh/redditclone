@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class SubredditsControllerTest < ActionController::TestCase
-  include Devise::TestHelpers
 
   def setup
     @subreddit = subreddits(:subreddit_one)
