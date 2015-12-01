@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate_user!
+  before_action :authenticate_user!, except: [:show]
+  # add correct user before_action for deleting and updating
 
   # POST /comments
   # POST /comments.json
