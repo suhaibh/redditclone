@@ -1,9 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+link_one:
   title: MyString
   url: MyString
   subreddit: subreddit_one
+  user: luke
 
 two:
   title: MyString
