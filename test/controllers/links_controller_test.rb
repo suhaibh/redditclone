@@ -15,6 +15,13 @@ class LinksControllerTest < ActionController::TestCase
 		assert_response :success
 	end
 
+	test "should redirect to link on create" do
+		sign_in @user
+		@new_link = {title: "Link title", url:"www.example.com", description: "This is a new link"}
+		post :create, subreddit_id: @subreddit, link: @new_link
+		assert_redirected_to subreddit_link_path(@subreddit, assigns(:link))
+	end
+
 	test "should redirect new to sign in when not signed in" do
 		get :new, subreddit_id: @subreddit
 		assert_redirected_to new_user_session_path
