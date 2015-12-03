@@ -21,4 +21,15 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
 		end
 		assert_redirected_to root_path
 	end
+
+	test "signup should be valid without email" do
+		assert_difference 'User.count', 1 do
+			post user_registration_path, user: { name:					"Obi Wan Kenobi",
+												 email: 				"",
+												 password: 				"password",
+												 password_confirmation: "password"}
+		end
+		assert_redirected_to root_path
+	end
+
 end

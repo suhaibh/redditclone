@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_many :comments, dependent: :destroy
 
   validates :name, presence: true, uniqueness: true
+  
 
  # total link score for a given user
  def score
