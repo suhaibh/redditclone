@@ -1,4 +1,5 @@
 require 'test_helper'
+include Devise::TestHelpers
 
 class UsersSignupTest < ActionDispatch::IntegrationTest
 	
@@ -30,6 +31,15 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
 												 password_confirmation: "password"}
 		end
 		assert_redirected_to root_path
+	end
+
+	test "signup should be valid with same email" do
+		assert_difference 'User.count', 1 do
+			post user_registration_path, user: { 	name: "Obi Wan Kenobi",
+													email: "luke@example.com",
+													password: "password",
+													password_confirmation: "password"}
+		end
 	end
 
 end
