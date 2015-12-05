@@ -16,11 +16,17 @@ class LinksInterfaceTest < ActionDispatch::IntegrationTest
 	end
 
 	test "logged in user should be able to post link" do
-		post user_session_path, user: { name: 'Luke_skywalker',
-										password: 'password'}
+		get new_user_session_path
+		assert_select 'h2', "Log in"
+		assert_select 'input[value=?]', "Log in"
+		post user_session_path, user: { name: @user.name,
+								  		password: 'password' }
+		assert_redirected_to root_path
+		follow_redirect!
+		assert_select 'a[href=?]', destroy_user_session_path
 		assert_difference 'Link.count', 1 do
 			post subreddit_links_path subreddit_id: @subreddit, link: { title: 			"Title",
-																		url: 			"www.example.com",
+																		url: 			"https://www.example.com",
 																		description: 	"Link description" }
 		end
 	end
