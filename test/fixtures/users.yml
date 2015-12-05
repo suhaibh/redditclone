@@ -5,6 +5,6 @@
 # below each fixture, per the syntax in the comments below
 #
 luke:
-  name: Luke_skywalker
+  name: luke_skywalker
   email: luke@example.com
   encrypted_password: <%= Devise.bcrypt(User, 'password') %>
