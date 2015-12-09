@@ -4,6 +4,7 @@ class LinksInterfaceTest < ActionDispatch::IntegrationTest
 	def setup
 		@user = users(:luke)
 		@subreddit = subreddits(:subreddit_one)
+		@link = links(:link_one)
 	end
 
 	test "user should be logged in to post link" do
@@ -29,5 +30,12 @@ class LinksInterfaceTest < ActionDispatch::IntegrationTest
 																		url: 			"https://www.example.com",
 																		description: 	"Link description" }
 		end
+	end
+
+	test "non-logged in user should be able to see link page" do
+		get subreddit_link_path(@link.subreddit, @link)
+		assert_response :success
+		assert_select "p", "Title: #{@link.title}"
+		assert_select "a[href=?]", user_path(@link.user.name)
 	end
 end
