@@ -4,6 +4,7 @@ class SubredditsInterfaceTest < ActionDispatch::IntegrationTest
 
 	def setup
 		@user = users(:luke)
+		@subreddit = subreddits(:subreddit_one)
 	end
 
 	test "not logged in user should create subreddit" do
@@ -25,6 +26,13 @@ class SubredditsInterfaceTest < ActionDispatch::IntegrationTest
 												description: 	"A subreddit's description" }
 		end
 		assert_redirected_to assigns(:subreddit)
+	end
+
+	test "non-logged in user should see subreddit" do
+		get subreddit_path(@subreddit)
+		assert_response :success
+		assert_select 'h1', @subreddit.title
+		assert_select 'a[href=?]', new_subreddit_link_path(@subreddit)
 	end
 
 end
