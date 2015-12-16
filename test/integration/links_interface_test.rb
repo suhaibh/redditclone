@@ -2,7 +2,8 @@ require 'test_helper'
 
 class LinksInterfaceTest < ActionDispatch::IntegrationTest
 	def setup
-		@user = users(:luke)
+		@luke = users(:luke)
+		@obiwan = users(:obiwan)
 		@subreddit = subreddits(:subreddit_one)
 		@link = links(:link_one)
 	end
@@ -20,7 +21,7 @@ class LinksInterfaceTest < ActionDispatch::IntegrationTest
 		get new_user_session_path
 		assert_select 'h2', "Log in"
 		assert_select 'input[value=?]', "Log in"
-		post user_session_path, user: { name: @user.name,
+		post user_session_path, user: { name: @luke.name,
 								  		password: 'password' }
 		assert_redirected_to root_path
 		follow_redirect!
@@ -37,5 +38,13 @@ class LinksInterfaceTest < ActionDispatch::IntegrationTest
 		assert_response :success
 		assert_select "p", "Title: #{@link.title}"
 		assert_select "a[href=?]", user_path(@link.user.name)
+	end
+
+	test "user can not delete another user's link" do
+		post user_session_path, user: { name: 		@obiwan.name,
+										password: 	'password'}
+		assert_no_difference 'Link.count' do
+			delete subreddit_link_path(@subreddit, @link)
+		end
 	end
 end
