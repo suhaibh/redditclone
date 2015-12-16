@@ -8,3 +8,8 @@ luke:
   name: luke_skywalker
   email: luke@example.com
   encrypted_password: <%= Devise.bcrypt(User, 'password') %>
+
+obiwan:
+  name: obiwan_kenobi
+  email: obiwan@example.com
+  encrypted_password: <%= Devise.bcrypt(User, 'password') %>
