@@ -98,8 +98,8 @@ class LinksController < ApplicationController
     end
 
     def correct_user
-      @link = current_user.links.find_by(id: params[:id])
-      redirect_to links_path, notice: "Not authorized to edit this link" if @link.nil?
+      current_link = current_user.links.find_by(id: @link.id)
+      redirect_to subreddit_links_path, notice: "Not authorized to edit this link" if current_link.nil?
     end
 
 end
