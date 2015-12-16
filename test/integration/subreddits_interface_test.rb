@@ -7,7 +7,7 @@ class SubredditsInterfaceTest < ActionDispatch::IntegrationTest
 		@subreddit = subreddits(:subreddit_one)
 	end
 
-	test "not logged in user should create subreddit" do
+	test "not logged in user should not create subreddit" do
 		assert_no_difference 'Subreddit.count' do
 			post subreddits_path, subreddit: { 	title: "A Subreddit",
 												description: "A Subreddit's description"}
@@ -31,6 +31,8 @@ class SubredditsInterfaceTest < ActionDispatch::IntegrationTest
 	test "non-logged in user should see subreddit" do
 		get subreddit_path(@subreddit)
 		assert_response :success
+		assert_select 'a', "Log in"
+		assert_select 'a[href=?]', new_user_session_path
 		assert_select 'h1', @subreddit.title
 		assert_select 'a[href=?]', new_subreddit_link_path(@subreddit)
 	end
