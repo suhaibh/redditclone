@@ -4,6 +4,7 @@ class SubredditsInterfaceTest < ActionDispatch::IntegrationTest
 
 	def setup
 		@user = users(:luke)
+		@obiwan = users(:obiwan)
 		@subreddit = subreddits(:subreddit_one)
 	end
 
@@ -26,6 +27,30 @@ class SubredditsInterfaceTest < ActionDispatch::IntegrationTest
 												description: 	"A subreddit's description" }
 		end
 		assert_redirected_to assigns(:subreddit)
+	end
+
+	test "correct user should delete subreddit" do
+		post new_user_session_path, user: { name: 		@user.name,
+		 									password: 	'password'}
+		 assert_redirected_to root_path
+		 follow_redirect!
+		 assert_select "a[href=?]", destroy_user_session_path
+		 assert_difference 'Subreddit.count', -1 do
+		 	delete subreddit_path(@subreddit)
+		 end
+		 assert_redirected_to root_path
+	end
+
+	test "incorrect user should not delete subreddit" do
+		post new_user_session_path, user: { name: 		@obiwan.name,
+											password: 	'password'}
+		assert_redirected_to root_path
+		follow_redirect!
+		assert_select "a[href=?]", destroy_user_session_path
+		assert_no_difference 'Subreddit.count' do
+			delete subreddit_path(@subreddit)
+		end
+		assert_redirected_to subreddit_path(@subreddit)
 	end
 
 	test "non-logged in user should see subreddit" do
