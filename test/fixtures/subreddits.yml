@@ -3,7 +3,9 @@
 subreddit_one:
   title: "Subreddit Title"
   description: "Subreddit Description"
+  user: luke
 
 two:
   title: MyString
   description: MyString
+  user: luke
