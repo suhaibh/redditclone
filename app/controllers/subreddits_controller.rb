@@ -1,7 +1,11 @@
 class SubredditsController < ApplicationController
 
-  before_action :authenticate_user!, except: [:show]
+  before_action :authenticate_user!, except: [:show, :index]
   before_action :correct_user, only: [:destroy, :edit]
+
+  def index
+    @subreddits = Subreddit.all
+  end
 
   def new
     @subreddit = Subreddit.new
