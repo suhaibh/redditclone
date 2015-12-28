@@ -8,7 +8,7 @@ class LinksInterfaceTest < ActionDispatch::IntegrationTest
 		@link = links(:link_one)
 	end
 
-	test "user should be logged in to post link" do
+	test "non-logged in user should not be able to create link" do
 		assert_no_difference 'Link.count' do
 			post subreddit_links_path subreddit_id: @subreddit.id, link: {  title: 			"Title",
 																			url: 			"www.example.com",
