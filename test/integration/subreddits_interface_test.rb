@@ -62,4 +62,11 @@ class SubredditsInterfaceTest < ActionDispatch::IntegrationTest
 		assert_select 'a[href=?]', new_subreddit_link_path(@subreddit)
 	end
 
+	test "non-logged in user should see subreddit index" do
+		get subreddits_path
+		assert_response :success
+		assert_select 'h1', "Subreddits"
+		assert_select 'h6', @subreddit.title
+	end
+
 end
